@@ -2,8 +2,6 @@
 /* USEMOS INDEX.CSS PARA PASAR CSS, NO APP.CSS */
 
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
