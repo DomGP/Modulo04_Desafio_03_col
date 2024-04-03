@@ -14,13 +14,13 @@ function App() {
     <>
       <Header 
         textTitle = 'Lista de Colaboradores'/>
-      <div>
-        <Listado 
+      <div className='d-flex'>
+        <Listado className='col-md-9'
           datos = {BaseColaboradores} />
           <div>
             <Subtitle
               textSubtitle = 'Agregar Colaborador' />
-            <Formulario />
+            <Formulario className='col-md-3' />
           </div>
       </div>
     </>
