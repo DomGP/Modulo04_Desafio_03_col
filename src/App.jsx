@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { BaseColaboradores } from './BaseColaboradores'
 
 import './App.css'
@@ -10,17 +11,26 @@ import Subtitle from './components/Subtitle';
 
 function App() {
 
+  const [datos, setDatos] = useState(BaseColaboradores) //Se declara el estado llamado 'datos' que almacena a BaseColaboradores.
+
+  const agregarColaborador = (nuevoColaborador) => {
+    setDatos([...datos, nuevoColaborador])
+    //Esta función se va al componente formulario, para agregar los nuevos colaboradores al estado 'datos'
+  }
+
   return (
     <>
       <Header 
         textTitle = 'Lista de Colaboradores'/>
       <div className='d-flex'>
         <Listado className='col-md-9'
-          datos = {BaseColaboradores} />
+          datos = {datos} />
           <div>
             <Subtitle
               textSubtitle = 'Agregar Colaborador' />
-            <Formulario className='col-md-3' />
+            <Formulario 
+              className='col-md-3' 
+              agregarColaborador = {agregarColaborador}/>
           </div>
       </div>
     </>

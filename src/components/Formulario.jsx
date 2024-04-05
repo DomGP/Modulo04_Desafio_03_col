@@ -1,81 +1,111 @@
 import { useState } from "react";
-const Formulario = () => {
 
-    const [colaborador, setColaborador] = useState({
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
+const Formulario = ({agregarColaborador}) => {
+
+    /* const [colaborador, setColaborador] = useState({
         nombre: "",
         email: "",
         edad: "",
         cargo: "",
         telefono: ""
-    });
-    const ingresoColab = (e) =>{
-        e.preventDefault()
-        setColaborador(e.target.value)
-    }
+    }); */
+
+  //ESTADOS DEL FORMULARIO
+  const [nombre, setNombre] = useState('')
+  const [correo, setCorreo] = useState('')
+  const [edad, setEdad] = useState('')
+  const [cargo, setCargo] = useState('')
+  const [telefono, setTelefono] = useState('')
+
+  const generarIdUnico = () => {
+    return Math.floor(Math.random() * 100)
+  }
+
+  const ingresoColab = (e) => {
+    e.preventDefault()
+    const nuevoColaborador = {
+      id: generarIdUnico(),
+      nombre,
+      correo,
+      edad,
+      cargo,
+      telefono,
+    };
+    agregarColaborador(nuevoColaborador)
+    //Limpia los campos despues de agregar el colaborador
+    setNombre('');
+    setCorreo('');
+    setEdad('');
+    setCargo('');
+    setTelefono('');
+  }
     
   return (
     
     <div className="container">
-      <form>
-        <div className="mb-3">
-          <input
-            type="text"
-            className="form-control"
-            id="exampleInputName1"
-            aria-describedby="nameHelp"
-            name="nombre"
-            value={colaborador.nombre}
-            placeholder="Ingrese su nombre"
-            onChange={ingresoColab}
-          />
-        </div>
-        <div className="mb-3">
-          <input
-            type="email"
-            className="form-control"
-            id="exampleInputEmail1"
-            name="email"
-            value={colaborador.email}
-            placeholder="Ingrese su correo electronico"
-            onChange={ingresoColab}
-          />
-        </div>
-        <div className="mb-3">
-          <input 
-          type="text" 
-          className="form-control" 
-          id="exampleInputAge1"
-          name="edad"
-          value={colaborador.edad}
-          placeholder="Ingrese su edad" 
-          onChange={ingresoColab} 
-          />
-          
-        </div>
-        <div className="mb-3">
-          <input 
-          type="text" 
-          className="form-control" 
-          id="exampleInputAge1"
-          name="cargo"
-          value={colaborador.cargo}
-          placeholder="Ingrese su cargo"
-          onChange={ingresoColab} />
-        </div>
-        <div className="mb-3">
-          <input 
-          type="text" 
-          className="form-control" 
-          id="exampleInputPhoneNumber1"
-          name="telefono"
-          value={colaborador.telefono}
-          placeholder="Ingrese su numero de teléfono"
-          onChange={ingresoColab} />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Registrar Colaborador
-        </button>
-      </form>
+      <Form 
+                className='formStyle'
+                onSubmit={ingresoColab}>
+                <Form.Group 
+                    className="mb-3">
+                    <Form.Control 
+                        className="inputShort" 
+                        type="name" 
+                        placeholder="Nombre del colaborador"
+                        value={nombre} 
+                        onChange={(e) => setNombre(e.target.value)}/>
+                </Form.Group>
+
+                <Form.Group 
+                    className="mb-3">
+                    <Form.Control 
+                        className="inputShort"  
+                        type="email" 
+                        placeholder="Email del colaborador" 
+                        value={correo}
+                        onChange={(e) => setCorreo(e.target.value)}/>
+                </Form.Group>
+
+                <Form.Group 
+                    className="mb-3">
+                    <Form.Control 
+                        className="inputShort" 
+                        type="number" 
+                        placeholder="Edad del colaborador" 
+                        value={edad}
+                        onChange={(e) => setEdad(e.target.value)}/>
+                </Form.Group>
+
+                <Form.Group 
+                    className="mb-3">
+                    <Form.Control 
+                        className="inputShort" 
+                        type="text" 
+                        placeholder="Cargo del colaborador"
+                        value={cargo} 
+                        onChange={(e) => setCargo(e.target.value)}/>
+                </Form.Group>
+
+                <Form.Group 
+                    className="mb-3">
+                    <Form.Control 
+                        className="inputShort" 
+                        type="number" 
+                        placeholder="Teléfono del colaborador" 
+                        value={telefono}
+                        onChange={(e) => setTelefono(e.target.value)}/>
+                </Form.Group>
+
+                
+                <Button 
+                    className='buttonStyle' 
+                    type="submit">
+                    Agregar colaborador
+                </Button>
+            </Form>
       </div>
     
   );
