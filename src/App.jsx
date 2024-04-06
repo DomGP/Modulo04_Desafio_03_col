@@ -8,6 +8,7 @@ import Listado from './components/Listado'
 import Header from './components/Header';
 import Formulario from './components/Formulario';
 import Subtitle from './components/Subtitle';
+import Buscador from './components/Buscador';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
     <>
       <Header 
         textTitle = 'Lista de Colaboradores'/>
+      <Buscador datos= {datos} />
       <div className='d-flex'>
         <Listado className='col-md-9'
           datos = {datos} />
