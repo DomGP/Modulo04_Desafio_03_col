@@ -21,15 +21,15 @@ const Formulario = ({agregarColaborador}) => {
   const [cargo, setCargo] = useState('')
   const [telefono, setTelefono] = useState('')
 
-  const generarIdUnico = () => {
-    return Math.floor(Math.random() * 100)
-  }
+  // const generarIdUnico = () => {
+  //   return Math.floor(Math.random() * 100)
+  // }
   const [error, setError] = useState(false); //estado que nos muestra si estan todos los campos completados o no
   const [registroExitoso, setRegistroExitoso] = useState(false);
   const ingresoColab = (e) => {
     e.preventDefault()
     const nuevoColaborador = {
-      id: generarIdUnico(),
+      // id: generarIdUnico(),
       nombre,
       correo,
       edad,

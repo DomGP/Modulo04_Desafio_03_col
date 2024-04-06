@@ -1,24 +1,23 @@
-import Form from 'react-bootstrap/Form';
+import React, { useState } from 'react';
 
-const Buscador = ({datos}) => {
+const Buscador = ({ filtrar }) => {
+  const [busqueda, setBusqueda] = useState('');
 
-    const buscarColaborador = (e) =>{
-        console.log(e)
-       const datosFiltrados = datos.filter(
-            (element) => element.nombre.includes(e)
-        )
-        console.log(datosFiltrados)
-    }
+  const buscarCoinci = (e) => {
+    setBusqueda(e.target.value);
+    filtrar(e.target.value);
+  };
 
-    return (
-        <>
-            <Form.Control
-                className='mb-3 buscadorStyle'
-                type="text" 
-                placeholder="Ingresa un nombre" 
-                onChange={(e) => buscarColaborador(e.target.value)}/>
-        </>
-    )
-}
+  return (
+    <div>
+      <input className='"input-group input-group-sm mb-3"'
+        type="text"
+        placeholder="Buscar..."
+        value={busqueda}
+        onChange={buscarCoinci}
+      />
+    </div>
+  );
+};
 
-export default Buscador
+export default Buscador;
