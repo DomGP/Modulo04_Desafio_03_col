@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Alerta from "./ALerta";
 
 const Formulario = ({agregarColaborador}) => {
 
@@ -23,7 +24,8 @@ const Formulario = ({agregarColaborador}) => {
   const generarIdUnico = () => {
     return Math.floor(Math.random() * 100)
   }
-
+  const [error, setError] = useState(false); //estado que nos muestra si estan todos los campos completados o no
+  const [registroExitoso, setRegistroExitoso] = useState(false);
   const ingresoColab = (e) => {
     e.preventDefault()
     const nuevoColaborador = {
@@ -34,13 +36,27 @@ const Formulario = ({agregarColaborador}) => {
       cargo,
       telefono,
     };
+    if (
+      nombre === "" ||
+      correo === "" ||
+      edad === "" ||
+      cargo === "" ||
+      telefono === ""
+    ) {
+      setError(true);
+      setRegistroExitoso(false);
+      return;
+    }
     agregarColaborador(nuevoColaborador)
+    
     //Limpia los campos despues de agregar el colaborador
     setNombre('');
     setCorreo('');
     setEdad('');
     setCargo('');
     setTelefono('');
+    setRegistroExitoso(true);
+    setError(false);
   }
     
   return (
@@ -105,6 +121,12 @@ const Formulario = ({agregarColaborador}) => {
                     type="submit">
                     Agregar colaborador
                 </Button>
+                {error && ( //mensaje para indicar que faltan datos
+          <Alerta message="Todos los campos son obligatorios" success={false} />
+        )}
+        {registroExitoso && ( //mensaje para saber indicar datos registrados
+          <Alerta message="Los datos han sido registrados" success={true} />
+        )}
             </Form>
       </div>
     
