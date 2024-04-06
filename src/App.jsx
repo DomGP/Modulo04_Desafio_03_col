@@ -33,7 +33,7 @@ function App() {
   return (
     <>
       <Header textTitle="Lista de Colaboradores" />
-      <Buscador datos={datosFiltrados} />
+      <Buscador filtrar={datosFiltrados} />
 
       <div className="container-fluid">
         <div className="row">
