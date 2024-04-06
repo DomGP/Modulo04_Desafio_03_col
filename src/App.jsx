@@ -14,8 +14,8 @@ function App() {
   const [datos, setDatos] = useState(BaseColaboradores); //Se declara el estado llamado 'datos' que almacena a BaseColaboradores.
 
   const agregarColaborador = (nuevoColaborador) => {
-    const id = datos.length +1;
-    setDatos([...datos, {id, ...nuevoColaborador}]);
+    const id = datos.length + 1;
+    setDatos([...datos, { id, ...nuevoColaborador }]);
     //Esta función se va al componente formulario, para agregar los nuevos colaboradores al estado 'datos'
   };
   const datosFiltrados = (term) => {
@@ -39,20 +39,20 @@ function App() {
         <div className="row">
           <div className="col-md-8 col-lg-9 col-xl-9">
             <div className="table-responsive">
-          <Listado className="col-md-9" datos={datos} />
-          </div>
+              <Listado className="col-md-9" datos={datos} />
+            </div>
           </div>
           <div className="col-md-4 col-lg-3 col-lx-3">
             <div>
-            <Subtitle textSubtitle="Agregar Colaborador" />
-            <Formulario
-              className="col-md-3"
-              agregarColaborador={agregarColaborador}
-            />
-            </div>
+              <Subtitle textSubtitle="Agregar Colaborador" />
+              <Formulario
+                className="col-md-3"
+                agregarColaborador={agregarColaborador}
+              />
             </div>
           </div>
         </div>
+      </div>
     </>
   );
 }
